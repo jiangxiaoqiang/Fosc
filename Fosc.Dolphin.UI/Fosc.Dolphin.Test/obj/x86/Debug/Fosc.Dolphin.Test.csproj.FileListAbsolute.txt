@@ -1,0 +1,5 @@
+H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Test\bin\Debug\Fosc.Dolphin.Test.exe
+H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Test\bin\Debug\Fosc.Dolphin.Test.pdb
+H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Test\obj\x86\Debug\Fosc.Dolphin.Test.exe
+H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Test\obj\x86\Debug\Fosc.Dolphin.Test.pdb
+H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Test\obj\x86\Debug\Fosc.Dolphin.Test.csprojResolveAssemblyReference.cache

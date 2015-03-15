@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net"  xmlns:aop="http://www.springframework.net/aop">
+
+  <!--必须让Spring.NET容器管理DefaultAdvisorAutoProxyCreator类-->
+  <object id="ProxyCreator" type="Spring.Aop.Framework.AutoProxy.DefaultAdvisorAutoProxyCreator, Spring.Aop"/>
+
+  <!-- 操作方法日志 -->
+  <object id="OperationLogAdvice" type="Develop.Core.Aop.OperationLogAdvice, Develop.Core" />
+  
+   <!-- 操作方法日志拦截 -->
+   <object type="Spring.Aop.Support.RegularExpressionMethodPointcutAdvisor, Spring.Aop">
+        <property name="advice" ref="OperationLogAdvice"/>
+        <property name="patterns">
+          <list>
+            <value>.*Service</value>
+			<value>.*Facade</value>
+			<value>.*Dal</value>
+          </list>
+        </property>
+   </object>
+   
+  <!-- 异常处理日志拦截 -->
+  <object id="BllExceptionAdvice" type="Develop.Core.Aop.BusinessExceptionAdvice, Develop.Core" />
+   
+   <!-- 异常处理日志拦截 -->
+   <object type="Spring.Aop.Support.RegularExpressionMethodPointcutAdvisor, Spring.Aop">
+        <property name="advice" ref="BllExceptionAdvice"/>
+        <property name="patterns">
+          <list>
+            <value>.*Service</value>
+			<value>.*Facade</value>
+			<value>.*Dal</value>
+          </list>
+        </property>
+   </object>
+   
+    <!-- 性能日志拦截 -->
+  <object id="CapabilityAdvice" type="Develop.Core.Aop.CapabilityAdvice, Develop.Core" />
+   
+   <!-- 性能日志拦截 -->
+   <object type="Spring.Aop.Support.RegularExpressionMethodPointcutAdvisor, Spring.Aop">
+        <property name="advice" ref="CapabilityAdvice"/>
+        <property name="patterns">
+          <list>
+            <value>.*Service</value>
+			<value>.*Facade</value>
+			<value>.*Dal</value>
+          </list>
+        </property>
+   </object>
+
+</objects>

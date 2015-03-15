@@ -1,0 +1,10 @@
+H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Dto\bin\Debug\Fosc.Dolphin.Dto.dll
+H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Dto\bin\Debug\Fosc.Dolphin.Dto.pdb
+H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Dto\bin\Debug\Develop.Core.dll
+H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Dto\bin\Debug\Spring.Data.dll
+H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Dto\bin\Debug\Spring.Core.dll
+H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Dto\bin\Debug\Spring.Aop.dll
+H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Dto\bin\Debug\Common.Logging.dll
+H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Dto\obj\Debug\Fosc.Dolphin.Dto.dll
+H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Dto\obj\Debug\Fosc.Dolphin.Dto.pdb
+H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Dto\obj\Debug\Fosc.Dolphin.Dto.csprojResolveAssemblyReference.cache

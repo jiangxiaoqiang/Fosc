@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+ <objects xmlns='http://www.springframework.net' 
+          default-autowire="byType"         
+          xmlns:db="http://www.springframework.net/database"		 
+          xmlns:tx="http://www.springframework.net/tx">
+
+      <!--定义数据提供对象-->
+
+      <!--定义数据提供对象-->
+
+      <db:provider id="DbProvider"
+          provider="System.Data.OracleClient"
+          connectionString="Data Source=orcl;Persist Security Info=True;User ID=jfy;Password=jfy;Unicode=True"/>        
+      
+      <!--定义数据提供对象（Oracle 11g）-->
+      <!--<object id="DbProvider" name="DbProvider" type="Spring.Data.Common.DbProvider,Spring.Data">
+        <constructor-arg name="dbMetaData" ref="OracleODP-11-2.0"/> 
+        <property name="connectionString" value="Server=127.0.0.1;Log File=oracle11g.log;Port=1521;Namespace=jfy;Password=jfy;User ID=jfy;"/> 
+      </object>-->
+        
+	    <!--申明式事务-->
+      <object id="transactionManager" type="Spring.Data.Core.AdoPlatformTransactionManager, Spring.Data">
+        <property name="DbProvider" ref="DbProvider"/>
+      </object>
+
+      <!--定义ado模板对象-->
+      <object type="Spring.Data.Generic.AdoTemplate, Spring.Data">
+        <property name="DbProvider" ref="DbProvider"/>
+      </object>  
+
+      <!--sql执行器-->
+      <object type="Develop.Core.Dal.SqlExcutor, Develop.Core">
+      </object>	    
+	  
+	    <!--sql获取器-->
+      <object type="Develop.Core.Dal.OracleSqlDbReader, Develop.Core">
+	      <property name="Table" value="SYS_SQL"/>
+	      <property name="KeyColumn" value="Code"/>
+	      <property name="SqlColumn" value="SQL"/>
+      </object>  
+	  
+	   <!--Oracle获取系统时间实现-->
+      <object type="Develop.Core.Util.OracleGetSysTime, Develop.Core">
+      </object>
+
+      <!--默认缓存策略-->
+      <object type="Develop.Core.Cache.DefaultCacheStrategy, Develop.Core">
+      </object>  	 	  
+	  
+	  <!--基于基类的代理-->
+      <tx:attribute-driven proxy-target-type="true" />	
+    </objects>

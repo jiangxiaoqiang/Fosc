@@ -1,0 +1,13 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Fosc.Dolphin.UI/Dev/FrmLogin.cs">
+    <Files>
+      <File FileName="Fosc.Dolphin.UI/Dev/FrmLogin.cs" Line="24" Column="20" />
+      <File FileName="Fosc.Dolphin.UI/Test/MutiTaskSync.cs" Line="13" Column="12" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

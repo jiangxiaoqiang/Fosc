@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1C9DAE60-1B04-4AC3-865D-ACB762976711}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fosc.Dolphin.Test</RootNamespace>
+    <AssemblyName>Fosc.Dolphin.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IPatternRunner.cs" />
+    <Compile Include="Pattern\Behavioral\ChainOfResp\Approver.cs" />
+    <Compile Include="Pattern\Behavioral\ChainOfResp\ChainOfRespRunner.cs" />
+    <Compile Include="Pattern\Behavioral\ChainOfResp\Director.cs" />
+    <Compile Include="Pattern\Behavioral\ChainOfResp\President.cs" />
+    <Compile Include="Pattern\Behavioral\ChainOfResp\Purchase.cs" />
+    <Compile Include="Pattern\Behavioral\ChainOfResp\VicePresident.cs" />
+    <Compile Include="Pattern\Behavioral\Command\Calculator.cs" />
+    <Compile Include="Pattern\Behavioral\Command\CalculatorCommand.cs" />
+    <Compile Include="Pattern\Behavioral\Command\Command.cs" />
+    <Compile Include="Pattern\Behavioral\Command\CommandRunner.cs" />
+    <Compile Include="Pattern\Behavioral\Command\User.cs" />
+    <Compile Include="Pattern\Creational\AbstractFactory\AfricaFactory.cs" />
+    <Compile Include="Pattern\Creational\AbstractFactory\AmericaFactory.cs" />
+    <Compile Include="Pattern\Creational\AbstractFactory\AnimalWorld.cs" />
+    <Compile Include="Pattern\Creational\AbstractFactory\Bison.cs" />
+    <Compile Include="Pattern\Creational\AbstractFactory\Carnivore.cs" />
+    <Compile Include="Pattern\Creational\AbstractFactory\ContinentFactory.cs" />
+    <Compile Include="Pattern\Creational\AbstractFactory\Herbivore.cs" />
+    <Compile Include="Pattern\Creational\AbstractFactory\Lion.cs" />
+    <Compile Include="Pattern\Creational\AbstractFactory\Runner.cs" />
+    <Compile Include="Pattern\Creational\AbstractFactory\Wildebeest.cs" />
+    <Compile Include="Pattern\Creational\AbstractFactory\Wolf.cs" />
+    <Compile Include="Pattern\Creational\Builder\BuilderRunner.cs" />
+    <Compile Include="Pattern\Creational\Builder\CarBuilder.cs" />
+    <Compile Include="Pattern\Creational\Builder\MotorCycleBuilder.cs" />
+    <Compile Include="Pattern\Creational\Builder\ScooterBuilder.cs" />
+    <Compile Include="Pattern\Creational\Builder\Shop.cs" />
+    <Compile Include="Pattern\Creational\Builder\Vehicle.cs" />
+    <Compile Include="Pattern\Creational\Builder\VehicleBuilder.cs" />
+    <Compile Include="Pattern\Creational\FactoryMethod\BibliographyPage.cs" />
+    <Compile Include="Pattern\Creational\FactoryMethod\ConclusionPage.cs" />
+    <Compile Include="Pattern\Creational\FactoryMethod\Document.cs" />
+    <Compile Include="Pattern\Creational\FactoryMethod\EducationPage.cs" />
+    <Compile Include="Pattern\Creational\FactoryMethod\ExperiencePage.cs" />
+    <Compile Include="Pattern\Creational\FactoryMethod\IntroductionPage.cs" />
+    <Compile Include="Pattern\Creational\FactoryMethod\Page.cs" />
+    <Compile Include="Pattern\Creational\FactoryMethod\Report.cs" />
+    <Compile Include="Pattern\Creational\FactoryMethod\ResultsPage.cs" />
+    <Compile Include="Pattern\Creational\FactoryMethod\Resume.cs" />
+    <Compile Include="Pattern\Creational\FactoryMethod\FMRunner.cs" />
+    <Compile Include="Pattern\Creational\FactoryMethod\SkillsPage.cs" />
+    <Compile Include="Pattern\Creational\FactoryMethod\SummaryPage.cs" />
+    <Compile Include="Pattern\Creational\Prototype\Color.cs" />
+    <Compile Include="Pattern\Creational\Prototype\ColorManager.cs" />
+    <Compile Include="Pattern\Creational\Prototype\ColorPrototype.cs" />
+    <Compile Include="Pattern\Creational\Prototype\PrototypeRun.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

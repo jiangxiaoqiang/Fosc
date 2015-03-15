@@ -1,0 +1,17 @@
+H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Dal\bin\Debug\Fosc.Dolphin.Dal.dll
+H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Dal\bin\Debug\Fosc.Dolphin.Dal.pdb
+H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Dal\bin\Debug\Develop.Core.dll
+H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Dal\bin\Debug\Fosc.Dolphin.Bll.dll
+H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Dal\bin\Debug\Fosc.Dolphin.Dto.dll
+H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Dal\bin\Debug\Spring.Core.dll
+H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Dal\bin\Debug\Spring.Data.dll
+H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Dal\bin\Debug\Fosc.Dolphin.IBll.dll
+H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Dal\bin\Debug\log4net.dll
+H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Dal\bin\Debug\Spring.Aop.dll
+H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Dal\bin\Debug\Common.Logging.dll
+H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Dal\bin\Debug\Fosc.Dolphin.Dto.pdb
+H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Dal\bin\Debug\Fosc.Dolphin.Bll.pdb
+H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Dal\bin\Debug\Fosc.Dolphin.IBll.pdb
+H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Dal\obj\Debug\Fosc.Dolphin.Dal.csprojResolveAssemblyReference.cache
+H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Dal\obj\Debug\Fosc.Dolphin.Dal.dll
+H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Dal\obj\Debug\Fosc.Dolphin.Dal.pdb
