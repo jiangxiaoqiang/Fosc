@@ -35,5 +35,17 @@ namespace Fosc.Dolphin.UI
             frmClear.Show();
         }
         #endregion
+
+        private void toolStripMenuItem_CodeGenerator_Click(object sender, EventArgs e)
+        {
+            var frmClear = new FrmAutoCode { MdiParent = this };
+            frmClear.Show();
+        }
+
+        private void toolStripMenuItem_Encrypt_Click(object sender, EventArgs e)
+        {
+            var frmClear = new FrmAutoCode { MdiParent = this };
+            frmClear.Show();
+        }
     }
 }

@@ -24,6 +24,7 @@ namespace Fosc.Dolphin.Bll.Pub
                     if (fileName == TempPath + "DcoreEcaConfig.xml")
                     {
                         continue;
+						
                     }
                     else
                     {

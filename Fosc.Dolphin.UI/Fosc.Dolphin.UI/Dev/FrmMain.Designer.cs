@@ -33,12 +33,14 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem_CodeGenerator = new System.Windows.Forms.ToolStripMenuItem();
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.documentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem_Encrypt = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,27 +70,36 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.openToolStripMenuItem.Text = "Open(&O)";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.exitToolStripMenuItem.Text = "Exit(&E)";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem_Encrypt,
+            this.toolStripMenuItem_CodeGenerator,
             this.clearToolStripMenuItem});
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(82, 21);
             this.toolStripMenuItem2.Text = "Widget(&W)";
             // 
+            // toolStripMenuItem_CodeGenerator
+            // 
+            this.toolStripMenuItem_CodeGenerator.Name = "toolStripMenuItem_CodeGenerator";
+            this.toolStripMenuItem_CodeGenerator.Size = new System.Drawing.Size(183, 22);
+            this.toolStripMenuItem_CodeGenerator.Text = "CodeGenerator(&G)";
+            this.toolStripMenuItem_CodeGenerator.Click += new System.EventHandler(this.toolStripMenuItem_CodeGenerator_Click);
+            // 
             // clearToolStripMenuItem
             // 
             this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
-            this.clearToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.clearToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.clearToolStripMenuItem.Text = "Clear(&C)";
             this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
             // 
@@ -103,8 +114,14 @@
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.optionsToolStripMenuItem.Text = "Options(&O)";
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(84, 21);
+            this.toolStripMenuItem3.Text = "Options(&O)";
             // 
             // helpToolStripMenuItem
             // 
@@ -120,11 +137,12 @@
             this.documentToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.documentToolStripMenuItem.Text = "Document(&D)";
             // 
-            // toolStripMenuItem3
+            // toolStripMenuItem_Encrypt
             // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(84, 21);
-            this.toolStripMenuItem3.Text = "Options(&O)";
+            this.toolStripMenuItem_Encrypt.Name = "toolStripMenuItem_Encrypt";
+            this.toolStripMenuItem_Encrypt.Size = new System.Drawing.Size(183, 22);
+            this.toolStripMenuItem_Encrypt.Text = "Encrypt(&E)";
+            this.toolStripMenuItem_Encrypt.Click += new System.EventHandler(this.toolStripMenuItem_Encrypt_Click);
             // 
             // FrmMain
             // 
@@ -156,6 +174,8 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem documentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_CodeGenerator;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_Encrypt;
     }
 }
 

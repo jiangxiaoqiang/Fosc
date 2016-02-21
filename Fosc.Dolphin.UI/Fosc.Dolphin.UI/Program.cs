@@ -5,6 +5,8 @@ using System.Windows.Forms;
 using Fosc.Dolphin.UI.Dev;
 using System.Reflection;
 using System.IO;
+using System.Threading;
+using Fosc.Dolphin.Common.LogCompenent;
 using log4net.Config;
 
 namespace Fosc.Dolphin.UI
@@ -20,19 +22,25 @@ namespace Fosc.Dolphin.UI
         [STAThread]
         static void Main()
         {
-            string assemblyFilePath = Assembly.GetExecutingAssembly().Location;
-            string assemblyDirPath = Path.GetDirectoryName(assemblyFilePath);
-            string configFilePath = assemblyDirPath + @"\Conf\log4net.config";
+            var assemblyFilePath = Assembly.GetExecutingAssembly().Location;
+            var assemblyDirPath = Path.GetDirectoryName(assemblyFilePath);
+            var configFilePath = assemblyDirPath + @"\Conf\log4net.config";
 
             /*
              * Aways check if the 'configFilePath' is the correct 'log4net.config' file path.
              */
-            XmlConfigurator.ConfigureAndWatch(new FileInfo(configFilePath)); 
-
+            XmlConfigurator.ConfigureAndWatch(new FileInfo(configFilePath));
+            Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new FrmMain());
-            Application.Run(new FrmLogin());
+            Application.Run(new FrmMain());
+        }
+
+        private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
+        {
+            var ex = e.Exception;
+            //做一些极其简单的记录异常信息操作
+            LogHelper.Logger.Error(ex);
         }
     }
 }

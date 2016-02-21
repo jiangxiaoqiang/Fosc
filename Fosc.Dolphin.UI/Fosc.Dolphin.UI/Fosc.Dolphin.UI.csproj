@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,13 +24,31 @@
     <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Common.Logging.Log4Net">
@@ -39,8 +57,9 @@
     <Reference Include="Develop.Core">
       <HintPath>Resource\Develop.Core.dll</HintPath>
     </Reference>
-    <Reference Include="log4net">
-      <HintPath>Resource\log4net.dll</HintPath>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Spring.Core">
       <HintPath>Resource\Spring.Core.dll</HintPath>
@@ -78,11 +97,23 @@
     <Compile Include="Dev\FrmTest.Designer.cs">
       <DependentUpon>FrmTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dev\Widget\FrmAutoCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dev\Widget\FrmAutoCode.Designer.cs">
+      <DependentUpon>FrmAutoCode.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dev\Widget\FrmClear.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dev\Widget\FrmClear.Designer.cs">
       <DependentUpon>FrmClear.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dev\Widget\FrmEncrypt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dev\Widget\FrmEncrypt.Designer.cs">
+      <DependentUpon>FrmEncrypt.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -98,8 +129,14 @@
     <EmbeddedResource Include="Dev\FrmTest.resx">
       <DependentUpon>FrmTest.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dev\Widget\FrmAutoCode.resx">
+      <DependentUpon>FrmAutoCode.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dev\Widget\FrmClear.resx">
       <DependentUpon>FrmClear.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dev\Widget\FrmEncrypt.resx">
+      <DependentUpon>FrmEncrypt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -146,6 +183,10 @@
     <ProjectReference Include="..\Fosc.Dolphin.Bll\Fosc.Dolphin.Bll.csproj">
       <Project>{4EE39971-784E-4416-9190-7F3697019FC8}</Project>
       <Name>Fosc.Dolphin.Bll</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fosc.Dolphin.Common\Fosc.Dolphin.Common.csproj">
+      <Project>{e1063169-0a2b-4bbd-838c-98ba31e8eafa}</Project>
+      <Name>Fosc.Dolphin.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fosc.Dolphin.Dal\Fosc.Dolphin.Dal.csproj">
       <Project>{B3B395A6-F814-4999-A2EF-5EF1CEC1FB50}</Project>
