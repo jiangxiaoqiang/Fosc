@@ -1,4 +1,0 @@
-H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Eai\bin\Debug\Fosc.Dolphin.Eai.dll
-H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Eai\bin\Debug\Fosc.Dolphin.Eai.pdb
-H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Eai\obj\Debug\Fosc.Dolphin.Eai.dll
-H:\共享\Code\Dolphin\Fosc.Dolphin.UI\Fosc.Dolphin.Eai\obj\Debug\Fosc.Dolphin.Eai.pdb
