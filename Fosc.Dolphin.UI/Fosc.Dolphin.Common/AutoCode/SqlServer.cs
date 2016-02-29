@@ -49,7 +49,7 @@ namespace Fosc.Dolphin.Common.AutoCode
             sb.Append("public @$TABLE__NAMEDAL()"); ModelGenerateHelper.NewLine(sb);
             //sb.Append("public static void initConn()"); ModelGenerateHelper.NewLine(sb);
             sb.Append("{"); ModelGenerateHelper.NewLine(sb);
-            sb.Append("DbModelGenerateHelperSQL.connectionString = System.Configuration.ConfigurationManager.ConnectionStrings[\"" + model.ConnectionName + "\"].ToString();"); ModelGenerateHelper.NewLine(sb);
+            sb.Append("DbHelperSQL.connectionString = System.Configuration.ConfigurationManager.ConnectionStrings[\"" + model.ConnectionName + "\"].ToString();"); ModelGenerateHelper.NewLine(sb);
             sb.Append("}"); ModelGenerateHelper.NewLine(sb);
 
             return sb.ToString();
@@ -71,10 +71,10 @@ namespace Fosc.Dolphin.Common.AutoCode
                 sb.Append("    SqlParameter[] parameters = {"); ModelGenerateHelper.NewLine(sb);
                 sb.Append("            new SqlParameter(\"@@$TABLE_KEY\", SqlDbType.@$TABLE_KEY_TYPE@$KEY_MAX_LENGTH)};"); ModelGenerateHelper.NewLine(sb);
                 sb.Append("    parameters[0].Value = @$TABLE_KEY;"); ModelGenerateHelper.NewLine(sb);
-                sb.Append("    return DbModelGenerateHelperSQL.Exists(strSql.ToString(),parameters);"); ModelGenerateHelper.NewLine(sb);
+                sb.Append("    return DbHelperSQL.Exists(strSql.ToString(),parameters);"); ModelGenerateHelper.NewLine(sb);
             }
             else
-                sb.Append("    return DbModelGenerateHelperSQL.Exists(strSql.ToString());"); ModelGenerateHelper.NewLine(sb);
+                sb.Append("    return DbHelperSQL.Exists(strSql.ToString());"); ModelGenerateHelper.NewLine(sb);
             sb.Append("}"); ModelGenerateHelper.NewLine(sb);
 
             #endregion
@@ -114,7 +114,7 @@ namespace Fosc.Dolphin.Common.AutoCode
                 }
             }
 
-            sb.Append("object obj = DbModelGenerateHelperSQL.GetSingle(strSql.ToString(), parameters);"); ModelGenerateHelper.NewLine(sb);
+            sb.Append("object obj = DbHelperSQL.GetSingle(strSql.ToString(), parameters);"); ModelGenerateHelper.NewLine(sb);
             sb.Append("if (obj == null)"); ModelGenerateHelper.NewLine(sb);
             sb.Append("    return 0;"); ModelGenerateHelper.NewLine(sb);
             sb.Append("else"); ModelGenerateHelper.NewLine(sb);
@@ -159,7 +159,7 @@ namespace Fosc.Dolphin.Common.AutoCode
                 ModelGenerateHelper.NewLine(sb);
             }
 
-            sb.Append("int rows=DbModelGenerateHelperSQL.ExecuteSql(strSql.ToString(),parameters);"); ModelGenerateHelper.NewLine(sb);
+            sb.Append("int rows=DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);"); ModelGenerateHelper.NewLine(sb);
             sb.Append("if (rows > 0)"); ModelGenerateHelper.NewLine(sb);
             sb.Append("	return true;"); ModelGenerateHelper.NewLine(sb);
             sb.Append("else"); ModelGenerateHelper.NewLine(sb);
@@ -179,7 +179,7 @@ namespace Fosc.Dolphin.Common.AutoCode
             sb.Append("         strSql.Append(\" where Id in (\"+@$TABLE_KEYList + \")  \");"); ModelGenerateHelper.NewLine(sb);
             //sb.Append("    else"); ModelGenerateHelper.NewLine(sb);
             //sb.Append("         strSql.Append(\" where \"+@$TABLE_KEYList + \"  \");"); ModelGenerateHelper.NewLine(sb);
-            sb.Append("    int rows=DbModelGenerateHelperSQL.ExecuteSql(strSql.ToString());"); ModelGenerateHelper.NewLine(sb);
+            sb.Append("    int rows=DbHelperSQL.ExecuteSql(strSql.ToString());"); ModelGenerateHelper.NewLine(sb);
             sb.Append("    if (rows > 0)"); ModelGenerateHelper.NewLine(sb);
             sb.Append("	    return true;"); ModelGenerateHelper.NewLine(sb);
             sb.Append("    else"); ModelGenerateHelper.NewLine(sb);
@@ -195,7 +195,7 @@ namespace Fosc.Dolphin.Common.AutoCode
             StringBuilder sb = new StringBuilder();
             sb.Append("public bool ExeSQL(string sql)"); ModelGenerateHelper.NewLine(sb);
             sb.Append("{"); ModelGenerateHelper.NewLine(sb);
-            sb.Append("    int rows=DbModelGenerateHelperSQL.ExecuteSql(sql);"); ModelGenerateHelper.NewLine(sb);
+            sb.Append("    int rows=DbHelperSQL.ExecuteSql(sql);"); ModelGenerateHelper.NewLine(sb);
             sb.Append("    if (rows > 0)"); ModelGenerateHelper.NewLine(sb);
             sb.Append("	    return true;"); ModelGenerateHelper.NewLine(sb);
             sb.Append("    else"); ModelGenerateHelper.NewLine(sb);
@@ -218,7 +218,7 @@ namespace Fosc.Dolphin.Common.AutoCode
             sb.Append("strSql.Append(\" where @$TABLE_KEY=@@$TABLE_KEY\");"); ModelGenerateHelper.NewLine(sb);
             sb.Append("SqlParameter[] parameters = {new SqlParameter(\"@@$TABLE_KEY\", SqlDbType.@$TABLE_KEY_TYPE@$KEY_MAX_LENGTH)};"); ModelGenerateHelper.NewLine(sb);
             sb.Append("parameters[0].Value = @$TABLE_KEY;"); ModelGenerateHelper.NewLine(sb);
-            sb.Append("int rows = DbModelGenerateHelperSQL.ExecuteSql(strSql.ToString(), parameters);"); ModelGenerateHelper.NewLine(sb);
+            sb.Append("int rows = DbHelperSQL.ExecuteSql(strSql.ToString(), parameters);"); ModelGenerateHelper.NewLine(sb);
             sb.Append("    if (rows > 0)"); ModelGenerateHelper.NewLine(sb);
             sb.Append("	    return true;"); ModelGenerateHelper.NewLine(sb);
             sb.Append("    else"); ModelGenerateHelper.NewLine(sb);
@@ -300,7 +300,7 @@ namespace Fosc.Dolphin.Common.AutoCode
             sb.Append("SqlParameter[] parameters = {new SqlParameter(\"@@$TABLE_KEY\", SqlDbType.@$TABLE_KEY_TYPE@$KEY_MAX_LENGTH)};"); ModelGenerateHelper.NewLine(sb);
             sb.Append("parameters[0].Value = @$TABLE_KEY;"); ModelGenerateHelper.NewLine(sb);
             sb.Append("@$TABLE__NAMEModel model = new @$TABLE__NAMEModel();"); ModelGenerateHelper.NewLine(sb);
-            sb.Append("DataSet ds = DbModelGenerateHelperSQL.Query(strSql.ToString(), parameters);"); ModelGenerateHelper.NewLine(sb);
+            sb.Append("DataSet ds = DbHelperSQL.Query(strSql.ToString(), parameters);"); ModelGenerateHelper.NewLine(sb);
             sb.Append("if (ds.Tables[0].Rows.Count > 0)"); ModelGenerateHelper.NewLine(sb);
             sb.Append("{"); ModelGenerateHelper.NewLine(sb);
 
@@ -328,9 +328,9 @@ namespace Fosc.Dolphin.Common.AutoCode
             sb.Append("StringBuilder strSql = new StringBuilder();"); ModelGenerateHelper.NewLine(sb);
             sb.Append("strSql.Append(\"select top 1 * from @$TABLE_NAME \");"); ModelGenerateHelper.NewLine(sb);
             sb.Append("    if (where.Trim() != \"\") strSql.Append(\" where \" + where);"); ModelGenerateHelper.NewLine(sb);
-            //sb.Append("    SqlDataReader reader=DbModelGenerateHelperSQL.ExecuteReader(strSql.ToString());"); ModelGenerateHelper.NewLine(sb);
+            //sb.Append("    SqlDataReader reader=DbHelperSQL.ExecuteReader(strSql.ToString());"); ModelGenerateHelper.NewLine(sb);
             sb.Append("@$TABLE__NAMEModel model = new @$TABLE__NAMEModel();"); ModelGenerateHelper.NewLine(sb);
-            sb.Append("DataSet ds = DbModelGenerateHelperSQL.Query(strSql.ToString());"); ModelGenerateHelper.NewLine(sb);
+            sb.Append("DataSet ds = DbHelperSQL.Query(strSql.ToString());"); ModelGenerateHelper.NewLine(sb);
             sb.Append("if (ds.Tables[0].Rows.Count > 0)"); ModelGenerateHelper.NewLine(sb);
             sb.Append("{"); ModelGenerateHelper.NewLine(sb);
 
@@ -358,7 +358,7 @@ namespace Fosc.Dolphin.Common.AutoCode
             sb.Append("    StringBuilder strSql = new StringBuilder();"); ModelGenerateHelper.NewLine(sb);
             sb.Append("    strSql.Append(\"select * from @$TABLE_NAME \");"); ModelGenerateHelper.NewLine(sb);
             sb.Append("    if (where.Trim() != \"\") strSql.Append(\" where \" + where);"); ModelGenerateHelper.NewLine(sb);
-            sb.Append("    SqlDataReader reader=DbModelGenerateHelperSQL.ExecuteReader(strSql.ToString());"); ModelGenerateHelper.NewLine(sb);
+            sb.Append("    SqlDataReader reader=DbHelperSQL.ExecuteReader(strSql.ToString());"); ModelGenerateHelper.NewLine(sb);
             sb.Append("    while (reader.Read())"); ModelGenerateHelper.NewLine(sb);
             sb.Append("    {"); ModelGenerateHelper.NewLine(sb);
             sb.Append("        @$TABLE__NAMEModel model = new @$TABLE__NAMEModel();"); ModelGenerateHelper.NewLine(sb);
@@ -386,7 +386,7 @@ namespace Fosc.Dolphin.Common.AutoCode
             sb.Append("    strSql.Append(\"select top \"+top+\" \"+fields+\" from @$TABLE_NAME \");"); ModelGenerateHelper.NewLine(sb);
             sb.Append("    if (where.Trim() != \"\") strSql.Append(\" where \" + where);"); ModelGenerateHelper.NewLine(sb);
             sb.Append("    if (order.Trim() != \"\") strSql.Append(\" order by \" + order);"); ModelGenerateHelper.NewLine(sb);
-            sb.Append("    SqlDataReader reader=DbModelGenerateHelperSQL.ExecuteReader(strSql.ToString());"); ModelGenerateHelper.NewLine(sb);
+            sb.Append("    SqlDataReader reader=DbHelperSQL.ExecuteReader(strSql.ToString());"); ModelGenerateHelper.NewLine(sb);
             sb.Append("    while (reader.Read())"); ModelGenerateHelper.NewLine(sb);
             sb.Append("    {"); ModelGenerateHelper.NewLine(sb);
             sb.Append("        @$TABLE__NAMEModel model = new @$TABLE__NAMEModel();"); ModelGenerateHelper.NewLine(sb);
@@ -419,7 +419,7 @@ namespace Fosc.Dolphin.Common.AutoCode
             sb.Append("    if (where.Trim() != \"\") strSql.Append(\" where \" + where);"); ModelGenerateHelper.NewLine(sb);
             sb.Append("    if (order.Trim() != \"\") strSql.Append(\" order by \" + order);"); ModelGenerateHelper.NewLine(sb);
 
-            sb.Append("    DataSet ds = DbModelGenerateHelperSQL.Query(strSql.ToString());"); ModelGenerateHelper.NewLine(sb);
+            sb.Append("    DataSet ds = DbHelperSQL.Query(strSql.ToString());"); ModelGenerateHelper.NewLine(sb);
             //sb.Append("    System.Web.HttpContext.Current.Response.Write(strSql);System.Web.HttpContext.Current.Response.End();"); ModelGenerateHelper.NewLine(sb);
             sb.Append("    if (ds.Tables.Count > 0)"); ModelGenerateHelper.NewLine(sb);
             sb.Append("        return ds.Tables[0];"); ModelGenerateHelper.NewLine(sb);
@@ -438,7 +438,7 @@ namespace Fosc.Dolphin.Common.AutoCode
             #region Template
             sb.Append("public DataTable GetListForSQL(string Sql)"); ModelGenerateHelper.NewLine(sb);
             sb.Append("{"); ModelGenerateHelper.NewLine(sb);
-            sb.Append("    DataSet ds = DbModelGenerateHelperSQL.Query(Sql);"); ModelGenerateHelper.NewLine(sb);
+            sb.Append("    DataSet ds = DbHelperSQL.Query(Sql);"); ModelGenerateHelper.NewLine(sb);
             sb.Append("    if (ds.Tables.Count > 0)"); ModelGenerateHelper.NewLine(sb);
             sb.Append("        return ds.Tables[0];"); ModelGenerateHelper.NewLine(sb);
             sb.Append("    else"); ModelGenerateHelper.NewLine(sb);
@@ -464,7 +464,7 @@ namespace Fosc.Dolphin.Common.AutoCode
             //sb.Append("        strSql.Append(\" order by \" + orderby);"); ModelGenerateHelper.NewLine(sb);
             //sb.Append("    int page_statrt = (pi - 1) * pz;"); ModelGenerateHelper.NewLine(sb);
             //sb.Append("    string countSql = strSql.ToString().Replace(\"*\", \"count(*)\");"); ModelGenerateHelper.NewLine(sb);
-            //sb.Append("    count = Convert.ToInt32(DbModelGenerateHelperSQL.GetSingle(countSql));"); ModelGenerateHelper.NewLine(sb);
+            //sb.Append("    count = Convert.ToInt32(DbHelperSQL.GetSingle(countSql));"); ModelGenerateHelper.NewLine(sb);
             //sb.Append("    strSql.AppendFormat(\" LIMIT {0},{1} \", page_statrt, pz);"); ModelGenerateHelper.NewLine(sb);
             //sb.Append("    System.Web.HttpContext.Current.Response.Write(strSql.ToString());return null;"); ModelGenerateHelper.NewLine(sb);
 
@@ -487,8 +487,8 @@ namespace Fosc.Dolphin.Common.AutoCode
             //sb.Append(""); ModelGenerateHelper.NewLine(sb);
             sb.Append("int i = countSql.LastIndexOf(\"WHERE\");"); ModelGenerateHelper.NewLine(sb);
             sb.Append("countSql=countSql.Substring(0,i);"); ModelGenerateHelper.NewLine(sb);
-            sb.Append("    count = Convert.ToInt32(DbModelGenerateHelperSQL.GetSingle(countSql));"); ModelGenerateHelper.NewLine(sb);
-            sb.Append("    return DbModelGenerateHelperSQL.Query(strSql.ToString()).Tables[0];"); ModelGenerateHelper.NewLine(sb);
+            sb.Append("    count = Convert.ToInt32(DbHelperSQL.GetSingle(countSql));"); ModelGenerateHelper.NewLine(sb);
+            sb.Append("    return DbHelperSQL.Query(strSql.ToString()).Tables[0];"); ModelGenerateHelper.NewLine(sb);
             sb.Append("}"); ModelGenerateHelper.NewLine(sb);
 
             return sb.ToString();
@@ -527,8 +527,8 @@ namespace Fosc.Dolphin.Common.AutoCode
             sb.Append("    parameters[9].Direction = ParameterDirection.Output;"); ModelGenerateHelper.NewLine(sb);
             sb.Append("    parameters[10].Value = 1;"); ModelGenerateHelper.NewLine(sb);
             sb.Append("    parameters[10].Direction = ParameterDirection.Output;"); ModelGenerateHelper.NewLine(sb);
-            //sb.Append("    DbModelGenerateHelperSQL.ExecuteSql(XINLG.Labs.Data.SqlServer.sql.procedure.UP_GetRecordByPage);");
-            sb.Append("    DataSet ds = DbModelGenerateHelperSQL.RunProcedure(\"P_viewPage\",parameters,\"ds\");"); ModelGenerateHelper.NewLine(sb);
+            //sb.Append("    DbHelperSQL.ExecuteSql(XINLG.Labs.Data.SqlServer.sql.procedure.UP_GetRecordByPage);");
+            sb.Append("    DataSet ds = DbHelperSQL.RunProcedure(\"P_viewPage\",parameters,\"ds\");"); ModelGenerateHelper.NewLine(sb);
             //sb.Append("    System.Web.HttpContext.Current.Response.Write(\"===\"+parameters[9].Value);");
 
             sb.Append("    DataTable dtc = new DataTable();");
@@ -558,9 +558,9 @@ namespace Fosc.Dolphin.Common.AutoCode
             sb.Append("public SysDAL()"); ModelGenerateHelper.NewLine(sb);
             //sb.Append("public static void initConn()"); ModelGenerateHelper.NewLine(sb);
             sb.Append("{"); ModelGenerateHelper.NewLine(sb);
-            //sb.Append("DbModelGenerateHelperSQL.connectionString = \"" + model.ConnectionString.Replace("\\", "\\\\") + "\";"); ModelGenerateHelper.NewLine(sb);
+            //sb.Append("DbHelperSQL.connectionString = \"" + model.ConnectionString.Replace("\\", "\\\\") + "\";"); ModelGenerateHelper.NewLine(sb);
             //WebConfigurationManager.ConnectionStrings[key].ToString()
-            sb.Append("DbModelGenerateHelperSQL.connectionString = System.Configuration.ConfigurationManager.ConnectionStrings[\"" + model.ConnectionName + "\"].ToString();"); ModelGenerateHelper.NewLine(sb);
+            sb.Append("DbHelperSQL.connectionString = System.Configuration.ConfigurationManager.ConnectionStrings[\"" + model.ConnectionName + "\"].ToString();"); ModelGenerateHelper.NewLine(sb);
             sb.Append("}"); ModelGenerateHelper.NewLine(sb);
 
             return sb.ToString();
@@ -574,7 +574,7 @@ namespace Fosc.Dolphin.Common.AutoCode
             sb.Append("{"); ModelGenerateHelper.NewLine(sb);
 
             sb.Append("string Sql = \"Select Name FROM SysObjects Where XType='U' orDER BY Name\";"); ModelGenerateHelper.NewLine(sb);
-            sb.Append("DataSet ds = DbModelGenerateHelperSQL.Query(Sql);"); ModelGenerateHelper.NewLine(sb);
+            sb.Append("DataSet ds = DbHelperSQL.Query(Sql);"); ModelGenerateHelper.NewLine(sb);
             sb.Append("if (ds.Tables.Count > 0)"); ModelGenerateHelper.NewLine(sb);
             sb.Append("    return ds.Tables[0];"); ModelGenerateHelper.NewLine(sb);
             sb.Append("else"); ModelGenerateHelper.NewLine(sb);

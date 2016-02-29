@@ -18,24 +18,25 @@ namespace Fosc.Dolphin.Common.AutoCode
         /// 生成数据操作类
         /// </summary>
         /// <param name="path">数据库类型</param>
+        /// <param name="configModel"></param>
         /// <returns></returns>
-        public static bool CompileImplemet(string path)
+        public static bool AutoGenerateImpl(string path, DatabaseConfig configModel)
         {
             var compileSuccess = false;
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
             }
-            var connectionString = ConfigReader.CodeGenerateConn;
+            var connectionString = ConfigReader.GetConfig(configModel.DatabaseName);
             if (InitSqlConn(connectionString, "sqlserver"))
             {
                 //Compile.Code = "";
                 //生成数据操作类
-                CompileModelImpl.CompileModel("DBTest");
-                CompileModelImpl.CompileDATA_IDAL("DBTest");
-                CompileModelImpl.CompileDATA_DataAccess("DBTest");
-                CompileModelImpl.CompileDATA_DAL_SqlServer("DBTest");
-                CompileModelImpl.CompileDATA_BLL("DBTest");
+                CompileModelImpl.CompileModel(configModel.DatabaseAlias);
+                CompileModelImpl.CompileDATA_IDAL(configModel.DatabaseAlias);
+                CompileModelImpl.CompileDATA_DataAccess(configModel.DatabaseAlias);
+                CompileModelImpl.CompileDATA_DAL_SqlServer(configModel.DatabaseAlias);
+                CompileModelImpl.CompileDATA_BLL(configModel.DatabaseAlias);
                 compileSuccess = true;
             }
             else
@@ -112,9 +113,8 @@ namespace Fosc.Dolphin.Common.AutoCode
 
         private string GetCodeForPublicClass(CodeGenerate model)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("public @$TABLE__NAMEBLL()"); ModelGenerateHelper.NewLine(sb);
-            //sb.Append("public static void initConn()"); Helper.NewLine(sb);
             sb.Append("{"); ModelGenerateHelper.NewLine(sb);
             sb.Append("DbHelperSQL.connectionString = System.Configuration.ConfigurationManager.ConnectionStrings[\"" + model.ConnectionName + "\"].ToString();"); ModelGenerateHelper.NewLine(sb);
             sb.Append("}"); ModelGenerateHelper.NewLine(sb);
@@ -202,8 +202,6 @@ namespace Fosc.Dolphin.Common.AutoCode
             return sb.ToString();
         }
 
-
-
         private string GetCodeForGetModelByCache()
         {
             StringBuilder sb = new StringBuilder();
@@ -220,7 +218,7 @@ namespace Fosc.Dolphin.Common.AutoCode
             sb.Append("		if (objModel != null)"); ModelGenerateHelper.NewLine(sb);
             sb.Append("		{"); ModelGenerateHelper.NewLine(sb);
             sb.Append("			int ModelCache = 60;"); ModelGenerateHelper.NewLine(sb);
-            sb.Append("			DataAccess.DataAccess.SetCache(CacheKey, objModel, DateTime.Now.AddMinutes(ModelCache), TimeSpan.Zero);"); 
+            sb.Append("			DataAccess.DataAccess.SetCache(CacheKey, objModel, DateTime.Now.AddMinutes(ModelCache), TimeSpan.Zero);");
             ModelGenerateHelper.NewLine(sb);
             sb.Append("		}"); ModelGenerateHelper.NewLine(sb);
             sb.Append("	}"); ModelGenerateHelper.NewLine(sb);
@@ -257,23 +255,23 @@ namespace Fosc.Dolphin.Common.AutoCode
 
         private string GetCodeForGetListInSql()
         {
-            StringBuilder sb = new StringBuilder();
-            sb.Append("public DataTable GetListForSQL(string Sql)"); ModelGenerateHelper.NewLine(sb);
-            sb.Append("{"); ModelGenerateHelper.NewLine(sb);
-            sb.Append("	return dal.GetListForSQL(Sql);"); ModelGenerateHelper.NewLine(sb);
-            sb.Append("}"); ModelGenerateHelper.NewLine(sb);
+            var sb = new StringBuilder();
+            sb.AppendLine("public DataTable GetListForSQL(string Sql)");
+            sb.AppendLine("{");
+            sb.AppendLine("	return dal.GetListForSQL(Sql);");
+            sb.AppendLine("}");
             return sb.ToString();
         }
 
 
         private string GetCodeForGetPageList()
         {
-            StringBuilder sb = new StringBuilder();
-            sb.Append("public DataTable GetListByPage(string strWhere, string fieldList, string orderby, int pz, int pi, out int count)"); ModelGenerateHelper.NewLine(sb);
-            sb.Append("{"); ModelGenerateHelper.NewLine(sb);
-            sb.Append("return dal.GetListByPage(strWhere, fieldList, orderby, pz, pi, out count);"); 
+            var sb = new StringBuilder();
+            sb.AppendLine("public DataTable GetListByPage(string strWhere, string fieldList, string orderby, int pz, int pi, out int count)"); ModelGenerateHelper.NewLine(sb);
+            sb.AppendLine("{");
+            sb.AppendLine("return dal.GetListByPage(strWhere, fieldList, orderby, pz, pi, out count);");
             ModelGenerateHelper.NewLine(sb);
-            sb.Append("}"); ModelGenerateHelper.NewLine(sb);
+            sb.AppendLine("}"); 
             return sb.ToString();
         }
 

@@ -20,7 +20,7 @@ namespace Fosc.Dolphin.Common.AutoCode
             sb.Append("public @$TABLE__NAMEBLL()"); ModelGenerateHelper.NewLine(sb);
             //sb.Append("public static void initConn()"); ModelGenerateHelper.NewLine(sb);
             sb.Append("{"); ModelGenerateHelper.NewLine(sb);
-            sb.Append("DbModelGenerateHelperSQL.connectionString = System.Configuration.ConfigurationManager.ConnectionStrings[\"" + model.ConnectionName + "\"].ToString();"); ModelGenerateHelper.NewLine(sb);
+            sb.Append("DbHelperSQL.connectionString = System.Configuration.ConfigurationManager.ConnectionStrings[\"" + model.ConnectionName + "\"].ToString();"); ModelGenerateHelper.NewLine(sb);
             sb.Append("}"); ModelGenerateHelper.NewLine(sb);
 
             return sb.ToString();
