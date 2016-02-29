@@ -40,6 +40,8 @@
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.txtDatabaseName = new System.Windows.Forms.TextBox();
             this.txtDatabaseIpAddr = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtPrev = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -76,10 +78,12 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.txtPrev);
             this.groupBox2.Controls.Add(this.txtPassword);
             this.groupBox2.Controls.Add(this.txtUserName);
             this.groupBox2.Controls.Add(this.txtDatabaseName);
@@ -94,7 +98,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(51, 194);
+            this.label5.Location = new System.Drawing.Point(58, 197);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(29, 12);
             this.label5.TabIndex = 1;
@@ -159,6 +163,23 @@
             this.txtDatabaseIpAddr.TabIndex = 0;
             this.txtDatabaseIpAddr.Text = "192.168.1.222";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(55, 237);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(41, 12);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "前缀：";
+            // 
+            // txtPrev
+            // 
+            this.txtPrev.Location = new System.Drawing.Point(98, 234);
+            this.txtPrev.Name = "txtPrev";
+            this.txtPrev.Size = new System.Drawing.Size(203, 21);
+            this.txtPrev.TabIndex = 0;
+            this.txtPrev.Text = "AutoCodeSystem";
+            // 
             // FrmAutoCode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -191,5 +212,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtPrev;
     }
 }

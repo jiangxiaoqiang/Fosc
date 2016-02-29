@@ -29,7 +29,7 @@ namespace Fosc.Dolphin.Common.AutoCode
                 }
             };
             var outputPath = AppDomain.CurrentDomain.BaseDirectory + @"CodeOutPath\";
-            var Code = GetAllDataTableDataAccess(codeGenerateModel,assemblyName);
+            var Code = GetAllDataTableDataAccess(codeGenerateModel, assemblyName);
             Compile.Code += Code;
             if (Code.IndexOf("err", StringComparison.Ordinal) >= 0)
                 return false;
@@ -50,7 +50,7 @@ namespace Fosc.Dolphin.Common.AutoCode
         /// 生成所有数据表数据层接口
         /// </summary>
         /// <returns></returns>
-        public static string GetAllDataTableDataAccess(CodeGenerate model,string assemblyName)
+        public static string GetAllDataTableDataAccess(CodeGenerate model, string assemblyName)
         {
             StringBuilder sb = new StringBuilder();
             DataTable dt = SqlServerSysObjectHelper.GetDataTableName();
@@ -79,7 +79,7 @@ namespace Fosc.Dolphin.Common.AutoCode
         /// 生成数据接口层
         /// </summary>
         /// <returns></returns>
-        public static bool CompileDATA_IDAL(string assemblyName)
+        public static bool CompileDataAccessLayerInterface(string assemblyName)
         {
             var codeGenerateModel = new CodeGenerate
             {
@@ -95,25 +95,27 @@ namespace Fosc.Dolphin.Common.AutoCode
             var outputPath = AppDomain.CurrentDomain.BaseDirectory + @"CodeOutPath\";
             if (!Directory.Exists(outputPath)) Directory.CreateDirectory(outputPath);
             var outPath = outputPath + assemblyName + ".IDAL.dll";
-
-            string code = GetAllDataTableIDAL(codeGenerateModel);
+            var code = GetAllDataTableIdal(codeGenerateModel);
             Compile.Code += code;
             if (code.IndexOf("err", StringComparison.Ordinal) >= 0)
+            {
                 return false;
+            }
             else
             {
-                string[] assemblies = new string[] { 
-                "System.dll",
-                "System.Data.dll",
-                "System.Xml.dll",
-                outputPath + assemblyName + ".Model.dll"
+                string[] assemblies = new string[]
+                {
+                    "System.dll",
+                    "System.Data.dll",
+                    "System.Xml.dll",
+                    outputPath + assemblyName + ".Model.dll"
                 };
                 return Compile.DomCompile(code, outPath, assemblies);
             }
         }
 
         /// <summary>
-        /// 生成SqlServer 的DAL层
+        /// 
         /// </summary>
         /// <returns></returns>
         public static bool CompileDATA_DAL_SqlServer(string assemblyName)
@@ -137,16 +139,15 @@ namespace Fosc.Dolphin.Common.AutoCode
                 }
             };
 
-            var Code = GetAllDataTableDAL(codeGenerateModel);
-            Compile.Code += Code;
-            if (Code.IndexOf("err", StringComparison.Ordinal) >= 0)
+            var code = GetAllDataTableDal(codeGenerateModel);
+            Compile.Code += code;
+            if (code.IndexOf("err", StringComparison.Ordinal) >= 0)
                 return false;
             else
             {
                 var outputPath = AppDomain.CurrentDomain.BaseDirectory + @"CodeOutPath\";
-
-                string OutPath = outputPath + assemblyName + ".DAL_SqlServer.dll";
-                string[] Assemblies = new string[] { 
+                var outPath = outputPath + assemblyName + ".DAL_SqlServer.dll";
+                string[] assemblies = new string[] { 
                 "System.dll",
                 "System.Data.dll",
                 "System.Xml.dll",
@@ -158,7 +159,7 @@ namespace Fosc.Dolphin.Common.AutoCode
                 outputPath+assemblyName+".Model.dll",
                 "XINLG.Labs.Data.dll"
                 };
-                return Compile.DomCompile(Code, OutPath, Assemblies);
+                return Compile.DomCompile(code, outPath, assemblies);
             }
         }
 
@@ -166,10 +167,10 @@ namespace Fosc.Dolphin.Common.AutoCode
         /// 生成所有数据表DAL类并包装
         /// </summary>
         /// <returns></returns>
-        public static string GetAllDataTableDAL(CodeGenerate model)
+        public static string GetAllDataTableDal(CodeGenerate model)
         {
-            StringBuilder sb = new StringBuilder();
-            DataTable dt = SqlServerSysObjectHelper.GetDataTableName();
+            var sb = new StringBuilder();
+            var dt = SqlServerSysObjectHelper.GetDataTableName();
             foreach (DataRow dr in dt.Rows)
             {
                 model.ClassName = dr[0].ToString().Replace(".", "_") + "DAL";
@@ -177,8 +178,8 @@ namespace Fosc.Dolphin.Common.AutoCode
                 ModelGenerateHelper.NewLine(sb);
                 ModelGenerateHelper.NewLine(sb);
             }
-            sb.Append(GetSysDataDAL(model));
-            ///加入命名空间并生成代码
+            sb.Append(GetSysDataDal(model));
+            //加入命名空间并生成代码
             return ModelGenerateHelper.GetUserNamespaceCode(model, sb.ToString());
         }
 
@@ -205,13 +206,13 @@ namespace Fosc.Dolphin.Common.AutoCode
             };
             var outputPath = AppDomain.CurrentDomain.BaseDirectory + @"CodeOutPath\";
 
-            string Code = GetAllDataTableBLL(codeGenerateModel);
-            Compile.Code += Code;
-            if (Code.IndexOf("err") >= 0)
+            string code = GetAllDataTableBll(codeGenerateModel);
+            Compile.Code += code;
+            if (code.IndexOf("err", StringComparison.Ordinal) >= 0)
                 return false;
             else
             {
-                string OutPath = outputPath + assemblyName + ".BLL.dll";
+                string outPath = outputPath + assemblyName + ".BLL.dll";
                 string[] assemblies = new string[] { 
                 "System.dll",
                 "System.Data.dll",
@@ -223,25 +224,25 @@ namespace Fosc.Dolphin.Common.AutoCode
                 outputPath+assemblyName+".DataAccess.dll",
                 outputPath+assemblyName+".IDAL.dll"
                 };
-                return Compile.DomCompile(Code, OutPath, assemblies);
+                return Compile.DomCompile(code, outPath, assemblies);
             }
         }
         /// <summary>
         /// 生成所有数据表DAL类并包装
         /// </summary>
         /// <returns></returns>
-        public static string GetAllDataTableBLL(CodeGenerate model)
+        public static string GetAllDataTableBll(CodeGenerate model)
         {
-            StringBuilder sb = new StringBuilder();
-            DataTable dt = SqlServerSysObjectHelper.GetDataTableName();
+            var sb = new StringBuilder();
+            var dt = SqlServerSysObjectHelper.GetDataTableName();
             foreach (DataRow dr in dt.Rows)
             {
                 model.ClassName = dr[0].ToString().Replace(".", "_") + "BLL";
-                sb.Append(GetDataTableBLL(dr[0].ToString(), false, model));
+                sb.Append(GetDataTableBll(dr[0].ToString(), false, model));
                 ModelGenerateHelper.NewLine(sb);
                 ModelGenerateHelper.NewLine(sb);
             }
-            ///加入命名空间并生成代码
+            //加入命名空间并生成代码
             return ModelGenerateHelper.GetUserNamespaceCode(model, sb.ToString());
         }
 
@@ -251,13 +252,12 @@ namespace Fosc.Dolphin.Common.AutoCode
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static string GetSysDataDAL(CodeGenerate model)
+        public static string GetSysDataDal(CodeGenerate model)
         {
             model.ClassName = "SysDAL";
-            string code = ModelGenerateHelper.GetUserClassCode(model, new SqlServer().GetSys(model));
-            if (code.IndexOf("err") >= 0) return null;
-
-            ///加入命名空间并生成代码
+            var code = ModelGenerateHelper.GetUserClassCode(model, new SqlServer().GetSys(model));
+            if (code.IndexOf("err", StringComparison.Ordinal) >= 0) return null;
+            //加入命名空间并生成代码
             return code;
         }
 
@@ -265,23 +265,23 @@ namespace Fosc.Dolphin.Common.AutoCode
         /// <summary>
         ///  获取一张表的数据操作方法
         /// </summary>
-        /// <param name="DataTableName"></param>
-        /// <param name="IsAddNamespace"></param>
+        /// <param name="dataTableName"></param>
+        /// <param name="isAddNamespace"></param>
         /// <returns></returns>
-        private static string GetDataTableBLL(string DataTableName, bool IsAddNamespace, CodeGenerate model)
+        private static string GetDataTableBll(string dataTableName, bool isAddNamespace, CodeGenerate model)
         {
-            DataTable dt = SqlServerSysObjectHelper.GetDataTableColumn(DataTableName);
+            DataTable dt = SqlServerSysObjectHelper.GetDataTableColumn(dataTableName);
             if (dt == null) return null;
             //包装一个类
             string code = ModelGenerateHelper.GetUserPartialCode(model, (new Bll()).Get(dt, model));
-            if (code.IndexOf("err",StringComparison.Ordinal) >= 0) return null;
+            if (code.IndexOf("err", StringComparison.Ordinal) >= 0) return null;
 
             //包装命名空间
-            if (IsAddNamespace)
+            if (isAddNamespace)
                 code = ModelGenerateHelper.GetUserNamespaceCode(model, code);
             return code;
         }
-        
+
 
         #region 数据表 操作类
         /// <summary>
@@ -305,7 +305,7 @@ namespace Fosc.Dolphin.Common.AutoCode
 
 
         #endregion
-        
+
         public static string GetIdal(DataTable dt)
         {
             var sb = new StringBuilder();
@@ -313,29 +313,29 @@ namespace Fosc.Dolphin.Common.AutoCode
                 return "err:无数据";
             else
             {
-                string TableName = dt.Rows[0]["TABLE_NAME"].ToString();
-                string KeyName = SqlServerSysObjectHelper.GetDataTableColumnKeyName(TableName);
-                string KeyType = SqlServerSysObjectHelper.GetDataTableColumnKeyType(TableName);
-                string CshipType = ModelGenerateHelper.FormatDataType(ModelGenerateHelper.FormatDataSqlTypeToSqlDbType(KeyType));
-                if (string.IsNullOrEmpty(KeyName)) KeyType = "";
+                string tableName = dt.Rows[0]["TABLE_NAME"].ToString();
+                string keyName = SqlServerSysObjectHelper.GetDataTableColumnKeyName(tableName);
+                string keyType = SqlServerSysObjectHelper.GetDataTableColumnKeyType(tableName);
+                string cshipType = ModelGenerateHelper.FormatDataType(ModelGenerateHelper.FormatDataSqlTypeToSqlDbType(keyType));
+                if (string.IsNullOrEmpty(keyName)) keyType = "";
 
-                if (string.IsNullOrEmpty(KeyName))
+                if (string.IsNullOrEmpty(keyName))
                     sb.Append("bool Exists();");
                 else
                 {
-                    sb.Append("bool Exists(" + CshipType + " " + KeyName + ");");
-                    sb.Append("bool Delete(" + CshipType + " " + KeyName + ");"); ModelGenerateHelper.NewLine(sb);
-                    sb.Append("bool DeleteList(string " + KeyName + "List);"); ModelGenerateHelper.NewLine(sb);
-                    sb.Append("" + TableName.Replace(".", "_") + "Model GetModel(" + CshipType + " " + KeyName + ");"); ModelGenerateHelper.NewLine(sb);
-                    sb.Append("bool Update(" + TableName.Replace(".", "_") + "Model model);"); ModelGenerateHelper.NewLine(sb);
+                    sb.Append("bool Exists(" + cshipType + " " + keyName + ");");
+                    sb.Append("bool Delete(" + cshipType + " " + keyName + ");"); ModelGenerateHelper.NewLine(sb);
+                    sb.Append("bool DeleteList(string " + keyName + "List);"); ModelGenerateHelper.NewLine(sb);
+                    sb.Append("" + tableName.Replace(".", "_") + "Model GetModel(" + cshipType + " " + keyName + ");"); ModelGenerateHelper.NewLine(sb);
+                    sb.Append("bool Update(" + tableName.Replace(".", "_") + "Model model);"); ModelGenerateHelper.NewLine(sb);
                 }
                 ModelGenerateHelper.NewLine(sb);
 
-                sb.Append("" + TableName.Replace(".", "_") + "Model GetModel(string where);"); ModelGenerateHelper.NewLine(sb);
+                sb.Append("" + tableName.Replace(".", "_") + "Model GetModel(string where);"); ModelGenerateHelper.NewLine(sb);
                 sb.Append("bool ExeSQL(string sql);"); ModelGenerateHelper.NewLine(sb);
-                sb.Append("int Add(" + TableName.Replace(".", "_") + "Model model);"); ModelGenerateHelper.NewLine(sb);
-                sb.Append("List<" + TableName.Replace(".", "_") + "Model> GetList(string where);"); ModelGenerateHelper.NewLine(sb);
-                sb.Append("List<" + TableName.Replace(".", "_") + "Model> GetModelList(int top,string fields,string where,string order);"); ModelGenerateHelper.NewLine(sb);
+                sb.Append("int Add(" + tableName.Replace(".", "_") + "Model model);"); ModelGenerateHelper.NewLine(sb);
+                sb.Append("List<" + tableName.Replace(".", "_") + "Model> GetList(string where);"); ModelGenerateHelper.NewLine(sb);
+                sb.Append("List<" + tableName.Replace(".", "_") + "Model> GetModelList(int top,string fields,string where,string order);"); ModelGenerateHelper.NewLine(sb);
                 sb.Append("DataTable GetListByPage(string strWhere, string fieldList, string orderby, int pz, int pi, out int count);"); ModelGenerateHelper.NewLine(sb);
                 sb.Append("DataSet GetList(int PageSize,int PageIndex,string fieldList,string strWhere,string Order,int SortType);"); ModelGenerateHelper.NewLine(sb);
                 sb.Append("DataTable GetListForSQL(string Sql);"); ModelGenerateHelper.NewLine(sb);
@@ -348,7 +348,7 @@ namespace Fosc.Dolphin.Common.AutoCode
         /// 生成所有数据表实体类并包装
         /// </summary>
         /// <returns></returns>
-        public static string GetAllDataTableIDAL(CodeGenerate model)
+        public static string GetAllDataTableIdal(CodeGenerate model)
         {
             var sb = new StringBuilder();
             DataTable dt = SqlServerSysObjectHelper.GetDataTableName();

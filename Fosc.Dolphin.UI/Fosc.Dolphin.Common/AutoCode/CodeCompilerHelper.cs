@@ -30,10 +30,8 @@ namespace Fosc.Dolphin.Common.AutoCode
             var connectionString = ConfigReader.GetConfig(configModel.DatabaseName);
             if (InitSqlConn(connectionString, "sqlserver"))
             {
-                //Compile.Code = "";
-                //生成数据操作类
                 CompileModelImpl.CompileModel(configModel.DatabaseAlias);
-                CompileModelImpl.CompileDATA_IDAL(configModel.DatabaseAlias);
+                CompileModelImpl.CompileDataAccessLayerInterface(configModel.DatabaseAlias);
                 CompileModelImpl.CompileDATA_DataAccess(configModel.DatabaseAlias);
                 CompileModelImpl.CompileDATA_DAL_SqlServer(configModel.DatabaseAlias);
                 CompileModelImpl.CompileDATA_BLL(configModel.DatabaseAlias);
@@ -46,63 +44,60 @@ namespace Fosc.Dolphin.Common.AutoCode
             return compileSuccess;
         }
 
-
-
         public string Get(DataTable dt, CodeGenerate model)
         {
             if (dt.Rows.Count < 1)
+            {
                 return "err:无数据";
+            }
             else
             {
-                string TableName = dt.Rows[0]["TABLE_NAME"].ToString();
-                string KeyName = ModelGenerateHelper.GetDataTableColumnKeyName(TableName);
-                string KeyType = ModelGenerateHelper.GetDataTableColumnKeyType(TableName);
-                if (string.IsNullOrEmpty(KeyName)) KeyType = "";
+                var tableName = dt.Rows[0]["TABLE_NAME"].ToString();
+                var keyName = ModelGenerateHelper.GetDataTableColumnKeyName(tableName);
+                var keyType = ModelGenerateHelper.GetDataTableColumnKeyType(tableName);
+                if (string.IsNullOrEmpty(keyName)) keyType = "";
 
                 #region 所有数据操作方法
-                StringBuilder sb = new StringBuilder(); ModelGenerateHelper.NewLine(sb);
-                sb.Append(GetCodeForCreateDal()); ModelGenerateHelper.NewLine(sb);
-                sb.Append(GetCodeForPublicClass(model)); ModelGenerateHelper.NewLine(sb);
-                sb.Append(GetCodeForAdd()); ModelGenerateHelper.NewLine(sb);
-                sb.Append(GetCodeForExists()); ModelGenerateHelper.NewLine(sb);
-                sb.Append(GetCodeForGetModelList()); ModelGenerateHelper.NewLine(sb);
-                sb.Append(GetCodeForGetModelListInInfo()); ModelGenerateHelper.NewLine(sb);
-                sb.Append(GetCodeForGetPageList()); ModelGenerateHelper.NewLine(sb);
-                sb.Append(GetCodeForGetPageListOld()); ModelGenerateHelper.NewLine(sb);
-                sb.Append(GetCodeForGetModelInSql()); ModelGenerateHelper.NewLine(sb);
+                var sb = new StringBuilder(); 
+                sb.AppendLine(GetCodeForCreateDal()); ModelGenerateHelper.NewLine(sb);
+                sb.AppendLine(GetCodeForPublicClass(model)); ModelGenerateHelper.NewLine(sb);
+                sb.AppendLine(GetCodeForAdd()); ModelGenerateHelper.NewLine(sb);
+                sb.AppendLine(GetCodeForExists()); ModelGenerateHelper.NewLine(sb);
+                sb.AppendLine(GetCodeForGetModelList()); ModelGenerateHelper.NewLine(sb);
+                sb.AppendLine(GetCodeForGetModelListInInfo()); ModelGenerateHelper.NewLine(sb);
+                sb.AppendLine(GetCodeForGetPageList()); ModelGenerateHelper.NewLine(sb);
+                sb.AppendLine(GetCodeForGetPageListOld()); ModelGenerateHelper.NewLine(sb);
+                sb.AppendLine(GetCodeForGetModelInSql()); ModelGenerateHelper.NewLine(sb);
                 ModelGenerateHelper.NewLine(sb);
                 sb.Append(GetCodeForExeSQL());
                 sb.Append(GetCodeForGetListInSql()); ModelGenerateHelper.NewLine(sb);
-                if (!string.IsNullOrEmpty(KeyName))
+                if (!string.IsNullOrEmpty(keyName))
                 {
-                    sb.Append(GetCodeForDelete()); ModelGenerateHelper.NewLine(sb);
-                    sb.Append(GetCodeForDeleteList()); ModelGenerateHelper.NewLine(sb);
-                    sb.Append(GetCodeForGetModelByCache()); ModelGenerateHelper.NewLine(sb);
-                    sb.Append(GetCodeForGetModel()); ModelGenerateHelper.NewLine(sb);
-                    sb.Append(GetCodeForUpdate()); ModelGenerateHelper.NewLine(sb);
+                    sb.AppendLine(GetCodeForDelete()); ModelGenerateHelper.NewLine(sb);
+                    sb.AppendLine(GetCodeForDeleteList()); ModelGenerateHelper.NewLine(sb);
+                    sb.AppendLine(GetCodeForGetModelByCache()); ModelGenerateHelper.NewLine(sb);
+                    sb.AppendLine(GetCodeForGetModel()); ModelGenerateHelper.NewLine(sb);
+                    sb.AppendLine(GetCodeForUpdate()); ModelGenerateHelper.NewLine(sb);
                 }
                 #endregion
 
-                string Code = sb.ToString();
+                var code = sb.ToString();
 
                 #region 设置表中常用的参数值
-                Code = Code.Replace("@$TABLE_NAME", TableName);
-                Code = Code.Replace("@$TABLE__NAME", TableName.Replace(".", "_"));
+                code = code.Replace("@$TABLE_NAME", tableName);
+                code = code.Replace("@$TABLE__NAME", tableName.Replace(".", "_"));
 
-                Code = Code.Replace("@$TABLE_KEY_TYPE", ModelGenerateHelper.FormatDataSqlTypeToSqlDbType(KeyType).ToString());
-                if (!string.IsNullOrEmpty(KeyName))
-                    Code = Code.Replace("@$TABLE_KEY_type", ModelGenerateHelper.FormatDataType(ModelGenerateHelper.FormatDataSqlTypeToSqlDbType(KeyType)));
+                code = code.Replace("@$TABLE_KEY_TYPE", ModelGenerateHelper.FormatDataSqlTypeToSqlDbType(keyType).ToString());
+                if (!string.IsNullOrEmpty(keyName))
+                    code = code.Replace("@$TABLE_KEY_type", ModelGenerateHelper.FormatDataType(ModelGenerateHelper.FormatDataSqlTypeToSqlDbType(keyType)));
                 else
-                    Code = Code.Replace("@$TABLE_KEY_type", "");
+                    code = code.Replace("@$TABLE_KEY_type", "");
 
-                Code = Code.Replace("@$TABLE_KEY", KeyName);
+                code = code.Replace("@$TABLE_KEY", keyName);
                 #endregion
 
-                return Code;
-
+                return code;
             }
-
-
         }
 
 
@@ -144,7 +139,7 @@ namespace Fosc.Dolphin.Common.AutoCode
 
         private string GetCodeForUpdate()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("public bool Update(@$TABLE__NAMEModel model)"); ModelGenerateHelper.NewLine(sb);
             sb.Append("{"); ModelGenerateHelper.NewLine(sb);
             sb.Append("	return dal.Update(model);"); ModelGenerateHelper.NewLine(sb);
@@ -154,7 +149,7 @@ namespace Fosc.Dolphin.Common.AutoCode
 
         private string GetCodeForDelete()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("public bool Delete(@$TABLE_KEY_type @$TABLE_KEY)"); ModelGenerateHelper.NewLine(sb);
             sb.Append("{"); ModelGenerateHelper.NewLine(sb);
             sb.Append("	return dal.Delete(@$TABLE_KEY);"); ModelGenerateHelper.NewLine(sb);
@@ -164,7 +159,7 @@ namespace Fosc.Dolphin.Common.AutoCode
 
         private string GetCodeForDeleteList()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("public bool DeleteList(string @$TABLE_KEYList)"); ModelGenerateHelper.NewLine(sb);
             sb.Append("{"); ModelGenerateHelper.NewLine(sb);
             sb.Append("	return dal.DeleteList(@$TABLE_KEYList);"); ModelGenerateHelper.NewLine(sb);
@@ -205,7 +200,6 @@ namespace Fosc.Dolphin.Common.AutoCode
         private string GetCodeForGetModelByCache()
         {
             StringBuilder sb = new StringBuilder();
-
             sb.Append("public @$TABLE__NAMEModel GetModelByCache(@$TABLE_KEY_type @$TABLE_KEY)"); ModelGenerateHelper.NewLine(sb);
             sb.Append("{"); ModelGenerateHelper.NewLine(sb);
             sb.Append("string CacheKey = \"@$TABLE__NAMEModel-\" + @$TABLE_KEY;"); ModelGenerateHelper.NewLine(sb);
@@ -308,7 +302,7 @@ namespace Fosc.Dolphin.Common.AutoCode
         }
 
         /// <summary>
-        /// 测试连接数据库是否成功
+        /// DB connection success
         /// </summary>
         /// <returns></returns>
         private static bool ConnectionTest(string conn)

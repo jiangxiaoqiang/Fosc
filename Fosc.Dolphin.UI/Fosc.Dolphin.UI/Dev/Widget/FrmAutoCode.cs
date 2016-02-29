@@ -21,7 +21,7 @@ namespace Fosc.Dolphin.UI.Dev.Widget
                 DatabaseName = txtDatabaseName.Text,
                 DatabasePassword = txtPassword.Text,
                 DatabaseUserName = txtUserName.Text,
-                DatabaseAlias = "System"
+                DatabaseAlias = txtPrev.Text
             };
             var suceess = CodeCompilerHelper.AutoGenerateImpl(codeGeneratePath, configModel);
             MessageBox.Show(suceess ? @"Generate Success" : @"Generate Failed");
