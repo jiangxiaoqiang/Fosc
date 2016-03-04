@@ -32,16 +32,16 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.txtPrev = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.txtDatabaseName = new System.Windows.Forms.TextBox();
             this.txtDatabaseIpAddr = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtPrev = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -95,6 +95,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "配置";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(55, 237);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(41, 12);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "前缀：";
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -131,6 +140,14 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "数据库IP";
             // 
+            // txtPrev
+            // 
+            this.txtPrev.Location = new System.Drawing.Point(98, 234);
+            this.txtPrev.Name = "txtPrev";
+            this.txtPrev.Size = new System.Drawing.Size(203, 21);
+            this.txtPrev.TabIndex = 0;
+            this.txtPrev.Text = "AutoCodeSystem";
+            // 
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(98, 194);
@@ -162,23 +179,6 @@
             this.txtDatabaseIpAddr.Size = new System.Drawing.Size(203, 21);
             this.txtDatabaseIpAddr.TabIndex = 0;
             this.txtDatabaseIpAddr.Text = "192.168.1.222";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(55, 237);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(41, 12);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "前缀：";
-            // 
-            // txtPrev
-            // 
-            this.txtPrev.Location = new System.Drawing.Point(98, 234);
-            this.txtPrev.Name = "txtPrev";
-            this.txtPrev.Size = new System.Drawing.Size(203, 21);
-            this.txtPrev.TabIndex = 0;
-            this.txtPrev.Text = "AutoCodeSystem";
             // 
             // FrmAutoCode
             // 

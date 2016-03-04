@@ -33,7 +33,7 @@ namespace Fosc.Dolphin.Common.AutoCode
                 CompileModelImpl.CompileModel(configModel.DatabaseAlias);
                 CompileModelImpl.CompileDataAccessLayerInterface(configModel.DatabaseAlias);
                 CompileModelImpl.CompileDATA_DataAccess(configModel.DatabaseAlias);
-                CompileModelImpl.CompileDATA_DAL_SqlServer(configModel.DatabaseAlias);
+                CompileModelImpl.CompileDalSqlServer(configModel.DatabaseAlias);
                 CompileModelImpl.CompileDATA_BLL(configModel.DatabaseAlias);
                 compileSuccess = true;
             }

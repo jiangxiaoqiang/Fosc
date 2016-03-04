@@ -121,6 +121,12 @@
     <Compile Include="Dev\FrmTest.Designer.cs">
       <DependentUpon>FrmTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dev\Tools\FrmOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dev\Tools\FrmOptions.Designer.cs">
+      <DependentUpon>FrmOptions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dev\Widget\FrmAutoCode.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dev\FrmTest.resx">
       <DependentUpon>FrmTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dev\Tools\FrmOptions.resx">
+      <DependentUpon>FrmOptions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dev\Widget\FrmAutoCode.resx">
       <DependentUpon>FrmAutoCode.cs</DependentUpon>

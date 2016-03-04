@@ -69,14 +69,15 @@
     <Compile Include="AutoCode\CodeEntities.cs" />
     <Compile Include="AutoCode\Compile.cs" />
     <Compile Include="AutoCode\CompileModelImpl.cs" />
+    <Compile Include="AutoCode\DalLayerHelper.cs" />
     <Compile Include="AutoCode\DataAccess.cs" />
     <Compile Include="AutoCode\ModelGenerateHelper.cs" />
     <Compile Include="AutoCode\SqlServer.cs" />
     <Compile Include="AutoCode\SqlServerSysObjectHelper.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="ConfigCompenent\ConfigReader.cs" />
     <Compile Include="LogCompenent\LogHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\RsaService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fosc.Dolphin.Object\Fosc.Dolphin.Model.csproj">
