@@ -1,4 +1,4 @@
-﻿namespace Fosc.Dolphin.UI
+﻿namespace Fosc.Dolphin.UI.Dev
 {
     partial class FrmMain
     {
@@ -35,7 +35,9 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem_Encrypt = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem_CodeGenerator = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem_Sqlite = new System.Windows.Forms.ToolStripMenuItem();
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.testTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,7 +84,9 @@
             this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem_Encrypt,
             this.toolStripMenuItem_CodeGenerator,
-            this.clearToolStripMenuItem});
+            this.toolStripMenuItem_Sqlite,
+            this.clearToolStripMenuItem,
+            this.testTToolStripMenuItem});
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(76, 20);
             this.toolStripMenuItem2.Text = "Widget(&W)";
@@ -101,12 +105,26 @@
             this.toolStripMenuItem_CodeGenerator.Text = "CodeGenerator(&G)";
             this.toolStripMenuItem_CodeGenerator.Click += new System.EventHandler(this.toolStripMenuItem_CodeGenerator_Click);
             // 
+            // toolStripMenuItem_Sqlite
+            // 
+            this.toolStripMenuItem_Sqlite.Name = "toolStripMenuItem_Sqlite";
+            this.toolStripMenuItem_Sqlite.Size = new System.Drawing.Size(170, 22);
+            this.toolStripMenuItem_Sqlite.Text = "Sqlite(&S)";
+            this.toolStripMenuItem_Sqlite.Click += new System.EventHandler(this.toolStripMenuItem_Sqlite_Click);
+            // 
             // clearToolStripMenuItem
             // 
             this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
             this.clearToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.clearToolStripMenuItem.Text = "Clear(&C)";
             this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
+            // 
+            // testTToolStripMenuItem
+            // 
+            this.testTToolStripMenuItem.Name = "testTToolStripMenuItem";
+            this.testTToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.testTToolStripMenuItem.Text = "Test(&T)";
+            this.testTToolStripMenuItem.Click += new System.EventHandler(this.testTToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -119,7 +137,7 @@
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.optionsToolStripMenuItem.Text = "Options(&O)";
             // 
             // helpToolStripMenuItem
@@ -133,7 +151,7 @@
             // documentToolStripMenuItem
             // 
             this.documentToolStripMenuItem.Name = "documentToolStripMenuItem";
-            this.documentToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.documentToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.documentToolStripMenuItem.Text = "Document(&D)";
             // 
             // FrmMain
@@ -167,6 +185,8 @@
         private System.Windows.Forms.ToolStripMenuItem documentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_CodeGenerator;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_Encrypt;
+        private System.Windows.Forms.ToolStripMenuItem testTToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_Sqlite;
     }
 }
 

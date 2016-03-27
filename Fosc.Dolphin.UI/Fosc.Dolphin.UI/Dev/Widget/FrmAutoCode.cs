@@ -14,7 +14,6 @@ namespace Fosc.Dolphin.UI.Dev.Widget
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var codeGeneratePath = Environment.CurrentDirectory + @"\CodeOutPath\";
             var configModel = new DatabaseConfig
             {
                 DatabaseIpAddr = txtDatabaseIpAddr.Text,
@@ -23,7 +22,7 @@ namespace Fosc.Dolphin.UI.Dev.Widget
                 DatabaseUserName = txtUserName.Text,
                 DatabaseAlias = txtPrev.Text
             };
-            var suceess = CodeCompilerHelper.AutoGenerateImpl(codeGeneratePath, configModel);
+            var suceess = CodeCompilerHelper.AutoGenerateImpl(configModel);
             MessageBox.Show(suceess ? @"Generate Success" : @"Generate Failed");
         }
     }

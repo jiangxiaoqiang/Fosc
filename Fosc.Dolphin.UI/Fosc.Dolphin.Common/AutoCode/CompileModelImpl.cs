@@ -37,7 +37,7 @@ namespace Fosc.Dolphin.Common.AutoCode
                 }
             };
             var code = GetAllDataTableDataAccess(codeGenerateModel, assemblyName);
-            Compile.Code += code;
+            CoreCompilerHelper.Code += code;
             if (code.IndexOf("err", StringComparison.Ordinal) >= 0)
             {
                 return false;
@@ -52,7 +52,7 @@ namespace Fosc.Dolphin.Common.AutoCode
                     "System.Web.dll",
                     OutputPath + assemblyName + ".IDAL.dll"
                 };
-                return Compile.DomCompile(code, outPath, assemblies);
+                return CoreCompilerHelper.DomCompile(code, outPath, assemblies);
             }
         }
 
@@ -64,25 +64,18 @@ namespace Fosc.Dolphin.Common.AutoCode
         {
             var sb = new StringBuilder();
             var dt = SqlServerSysObjectHelper.GetDataTableName();
-            sb.Append(DataAccess.GetCodeForGetCache());
-            ModelGenerateHelper.NewLine(sb);
-            sb.Append(DataAccess.GetCodeForSetCache());
-            ModelGenerateHelper.NewLine(sb);
-            sb.Append(DataAccess.GetCodeForSetCache2());
-            ModelGenerateHelper.NewLine(sb);
-            sb.Append(DataAccess.GetCodeForAssemblyPath(assemblyName + ".DAL_SqlServer"));
-            ModelGenerateHelper.NewLine(sb);
-            sb.Append(DataAccess.GetCodeForCreateObject());
-
+            sb.AppendLine(DataAccessLayerGenerateHelper.GetCodeForGetCache());
+            sb.AppendLine(DataAccessLayerGenerateHelper.GetCodeForSetCache());
+            sb.AppendLine(DataAccessLayerGenerateHelper.GetCodeForSetCache2());
+            sb.AppendLine(DataAccessLayerGenerateHelper.GetCodeForAssemblyPath(assemblyName + ".DAL_SqlServer"));
+            sb.AppendLine(DataAccessLayerGenerateHelper.GetCodeForCreateObject());
             foreach (DataRow dr in dt.Rows)
             {
-                sb.Append(DataAccess.GetDataTableDataAccess(dr[0].ToString()));
-                ModelGenerateHelper.NewLine(sb);
-                ModelGenerateHelper.NewLine(sb);
+                sb.AppendLine(DataAccessLayerGenerateHelper.GetDataTableDataAccess(dr[0].ToString()));
             }
-            string code = ModelGenerateHelper.GetUserSealedCode(model, sb.ToString());
-            ///加入命名空间并生成代码
-            return ModelGenerateHelper.GetUserNamespaceCode(model, code);
+            var code = ModelLayerGenerateHelper.GetUserSealedCode(model, sb.ToString());
+            //加入命名空间并生成代码
+            return ModelLayerGenerateHelper.GetUserNamespaceCode(model, code);
         }
 
         /// <summary>
@@ -105,7 +98,7 @@ namespace Fosc.Dolphin.Common.AutoCode
             if (!Directory.Exists(OutputPath)) Directory.CreateDirectory(OutputPath);
             var outPath = OutputPath + assemblyName + ".IDAL.dll";
             var code = GetAllDataTableIdal(codeGenerateModel);
-            Compile.Code += code;
+            CoreCompilerHelper.Code += code;
             if (code.IndexOf("err", StringComparison.Ordinal) >= 0)
             {
                 return false;
@@ -119,7 +112,7 @@ namespace Fosc.Dolphin.Common.AutoCode
                     "System.Xml.dll",
                     OutputPath + assemblyName + ".Model.dll"
                 };
-                return Compile.DomCompile(code, outPath, assemblies);
+                return CoreCompilerHelper.DomCompile(code, outPath, assemblies);
             }
         }
 
@@ -149,14 +142,14 @@ namespace Fosc.Dolphin.Common.AutoCode
             };
 
             var code = GetAllDataTableDal(codeGenerateModel);
-            Compile.Code += code;
+            CoreCompilerHelper.Code += code;
             if (code.IndexOf("err", StringComparison.Ordinal) >= 0)
             {
                 return false;
             }
             else
             {
-                var outPath = OutputPath + assemblyName + ".DAL_SqlServer.dll";
+                var outPath = OutputPath + assemblyName + ".DalSqlServer.dll";
                 var assemblies = new string[]
                 {
                     "System.dll",
@@ -170,7 +163,7 @@ namespace Fosc.Dolphin.Common.AutoCode
                     OutputPath + assemblyName + ".Model.dll",
                     "XINLG.Labs.Data.dll"
                 };
-                return Compile.DomCompile(code, outPath, assemblies);
+                return CoreCompilerHelper.DomCompile(code, outPath, assemblies);
             }
         }
 
@@ -185,20 +178,18 @@ namespace Fosc.Dolphin.Common.AutoCode
             foreach (DataRow dr in dt.Rows)
             {
                 model.ClassName = dr[0].ToString().Replace(".", "_") + "DAL";
-                sb.Append((new SqlServer()).GetDataTableDAL(dr[0].ToString(), false, model));
-                ModelGenerateHelper.NewLine(sb);
-                ModelGenerateHelper.NewLine(sb);
+                sb.AppendLine((new SqlServerLayerGenerateHelper()).GetDataTableDal(dr[0].ToString(), false, model));
             }
             sb.Append(GetSysDataDal(model));
             //加入命名空间并生成代码
-            return ModelGenerateHelper.GetUserNamespaceCode(model, sb.ToString());
+            return ModelLayerGenerateHelper.GetUserNamespaceCode(model, sb.ToString());
         }
 
         /// <summary>
         /// 生成BLL层
         /// </summary>
         /// <returns></returns>
-        public static bool CompileDATA_BLL(string assemblyName)
+        public static bool CompileDataBll(string assemblyName)
         {
             var codeGenerateModel = new CodeGenerate
             {
@@ -216,15 +207,15 @@ namespace Fosc.Dolphin.Common.AutoCode
                 }
             };
             var code = GetAllDataTableBll(codeGenerateModel);
-            Compile.Code += code;
+            CoreCompilerHelper.Code += code;
             if (code.IndexOf("err", StringComparison.Ordinal) >= 0)
             {
                 return false;
             }
             else
             {
-                string outPath = OutputPath + assemblyName + ".BLL.dll";
-                string[] assemblies = new string[]
+                var outPath = OutputPath + assemblyName + ".BLL.dll";
+                string[] assemblies =
                 {
                     "System.dll",
                     "System.Data.dll",
@@ -236,7 +227,7 @@ namespace Fosc.Dolphin.Common.AutoCode
                     OutputPath + assemblyName + ".DataAccess.dll",
                     OutputPath + assemblyName + ".IDAL.dll"
                 };
-                return Compile.DomCompile(code, outPath, assemblies);
+                return CoreCompilerHelper.DomCompile(code, outPath, assemblies);
             }
         }
         /// <summary>
@@ -250,12 +241,10 @@ namespace Fosc.Dolphin.Common.AutoCode
             foreach (DataRow dr in dt.Rows)
             {
                 model.ClassName = dr[0].ToString().Replace(".", "_") + "BLL";
-                sb.Append(GetDataTableBll(dr[0].ToString(), false, model));
-                ModelGenerateHelper.NewLine(sb);
-                ModelGenerateHelper.NewLine(sb);
+                sb.AppendLine(GetDataTableBll(dr[0].ToString(), false, model));
             }
             //加入命名空间并生成代码
-            return ModelGenerateHelper.GetUserNamespaceCode(model, sb.ToString());
+            return ModelLayerGenerateHelper.GetUserNamespaceCode(model, sb.ToString());
         }
 
 
@@ -267,7 +256,7 @@ namespace Fosc.Dolphin.Common.AutoCode
         public static string GetSysDataDal(CodeGenerate model)
         {
             model.ClassName = "SysDAL";
-            var code = ModelGenerateHelper.GetUserClassCode(model, new SqlServer().GetSys(model));
+            var code = ModelLayerGenerateHelper.GetUserClassCode(model, new SqlServerLayerGenerateHelper().GetSys(model));
             if (code.IndexOf("err", StringComparison.Ordinal) >= 0) return null;
             //加入命名空间并生成代码
             return code;
@@ -286,12 +275,12 @@ namespace Fosc.Dolphin.Common.AutoCode
             var dt = SqlServerSysObjectHelper.GetDataTableColumn(dataTableName);
             if (dt == null) return null;
             //包装一个类
-            var code = ModelGenerateHelper.GetUserPartialCode(model, (new Bll()).Get(dt, model));
+            var code = ModelLayerGenerateHelper.GetUserPartialCode(model, (new BllCodeGenerateHelper()).Get(dt, model));
             if (code.IndexOf("err", StringComparison.Ordinal) >= 0) return null;
 
             //包装命名空间
             if (isAddNamespace)
-                code = ModelGenerateHelper.GetUserNamespaceCode(model, code);
+                code = ModelLayerGenerateHelper.GetUserNamespaceCode(model, code);
             return code;
         }
 
@@ -310,11 +299,11 @@ namespace Fosc.Dolphin.Common.AutoCode
             if (dt == null) return null;
 
             //包装一个接口类
-            var code = ModelGenerateHelper.GetUserInterfaceCode(model, DalLayerHelper.GetIdal(dt));
+            var code = ModelLayerGenerateHelper.GetUserInterfaceCode(model, DalLayerGenerateHelper.GetIdal(dt));
             if (code.IndexOf("err", StringComparison.Ordinal) >= 0) return null;
             //包装命名空间
             if (isAddNamespace)
-                code = ModelGenerateHelper.GetUserNamespaceCode(model, code);
+                code = ModelLayerGenerateHelper.GetUserNamespaceCode(model, code);
             return code;
         }
 
@@ -333,11 +322,11 @@ namespace Fosc.Dolphin.Common.AutoCode
             {
                 model.ClassName = "I" + dr[0].ToString().Replace(".", "_");
                 sb.Append(GetDataTableIdal(dr[0].ToString(), false, model));
-                ModelGenerateHelper.NewLine(sb);
+                ModelLayerGenerateHelper.NewLine(sb);
             }
 
-            ///加入命名空间并生成代码
-            return ModelGenerateHelper.GetUserNamespaceCode(model, sb.ToString());
+            //加入命名空间并生成代码
+            return ModelLayerGenerateHelper.GetUserNamespaceCode(model, sb.ToString());
         }
 
         /// <summary>
@@ -355,8 +344,8 @@ namespace Fosc.Dolphin.Common.AutoCode
                     "System.Text"
                 }
             };
-            var code = ModelGenerateHelper.GetAllDataTableModel(codeGenerateModel);
-            Compile.Code += code;
+            var code = ModelLayerGenerateHelper.GetAllDataTableModel(codeGenerateModel);
+            CoreCompilerHelper.Code += code;
             if (code.IndexOf("err", StringComparison.Ordinal) >= 0)
             {
                 return false;
@@ -364,7 +353,7 @@ namespace Fosc.Dolphin.Common.AutoCode
             if (!Directory.Exists(OutputPath)) Directory.CreateDirectory(OutputPath);
             var outPath = OutputPath + assemblyName + ".Model.dll";
             var assemblies = new[] { "System.dll" };
-            return Compile.DomCompile(code, outPath, assemblies);
+            return CoreCompilerHelper.DomCompile(code, outPath, assemblies);
         }
     }
 }

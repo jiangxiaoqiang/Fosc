@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -34,7 +35,7 @@
     <OutputPath>bin\x64\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -43,7 +44,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -57,6 +58,7 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,22 +66,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoCode\Bll.cs" />
+    <Compile Include="AutoCode\BllCodeGenerateHelper.cs" />
     <Compile Include="AutoCode\CodeCompilerHelper.cs" />
     <Compile Include="AutoCode\CodeEntities.cs" />
-    <Compile Include="AutoCode\Compile.cs" />
+    <Compile Include="AutoCode\CoreCompilerHelper.cs" />
     <Compile Include="AutoCode\CompileModelImpl.cs" />
-    <Compile Include="AutoCode\DalLayerHelper.cs" />
-    <Compile Include="AutoCode\DataAccess.cs" />
-    <Compile Include="AutoCode\ModelGenerateHelper.cs" />
-    <Compile Include="AutoCode\SqlServer.cs" />
+    <Compile Include="AutoCode\DalLayerGenerateHelper.cs" />
+    <Compile Include="AutoCode\DataAccessLayerGenerateHelper.cs" />
+    <Compile Include="AutoCode\ModelLayerGenerateHelper.cs" />
+    <Compile Include="AutoCode\SqlServerLayerGenerateHelper.cs" />
     <Compile Include="AutoCode\SqlServerSysObjectHelper.cs" />
     <Compile Include="ConfigCompenent\ConfigReader.cs" />
+    <Compile Include="Db\Sqlite\SqliteOperateHelper.cs" />
+    <Compile Include="Db\Sqlite\SqliteService.cs" />
     <Compile Include="LogCompenent\LogHelper.cs" />
+    <Compile Include="Network\Ftp\FtpHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SDK\State\ProgramEnviroment.cs" />
+    <Compile Include="Security\DataProtection.cs" />
+    <Compile Include="Security\Dpapi.cs" />
+    <Compile Include="Security\EncryptTypeGuessService.cs" />
+    <Compile Include="Security\Md5Service.cs" />
     <Compile Include="Security\RsaService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\Renrenmall\Zouwo\trunk\RR.Labs\RR.Labs.csproj">
+      <Project>{97320674-d2e3-4284-9e75-c2cb6061939a}</Project>
+      <Name>RR.Labs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fosc.Dolphin.Object\Fosc.Dolphin.Model.csproj">
       <Project>{25b422cf-dde2-4c77-818c-e47d7b75904b}</Project>
       <Name>Fosc.Dolphin.Model</Name>

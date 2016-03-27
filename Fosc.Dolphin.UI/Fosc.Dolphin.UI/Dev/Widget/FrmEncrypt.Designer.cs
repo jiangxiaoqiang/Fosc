@@ -93,20 +93,20 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(51, 105);
+            this.label3.Location = new System.Drawing.Point(18, 104);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 12);
+            this.label3.Size = new System.Drawing.Size(77, 12);
             this.label3.TabIndex = 2;
-            this.label3.Text = "结果值";
+            this.label3.Text = "结果值(密文)";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(53, 44);
+            this.label2.Location = new System.Drawing.Point(19, 41);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 12);
+            this.label2.Size = new System.Drawing.Size(77, 12);
             this.label2.TabIndex = 2;
-            this.label2.Text = "原始值";
+            this.label2.Text = "原始值(明文)";
             // 
             // txtResult
             // 

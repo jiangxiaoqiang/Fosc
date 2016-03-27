@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+using System.Globalization;
 using System.Windows.Forms;
-using Fosc.Dolphin.UI.Source;
 using Fosc.Dolphin.UI.Dev.Widget;
+using Fosc.Dolphin.UI.Source;
 
-namespace Fosc.Dolphin.UI
+namespace Fosc.Dolphin.UI.Dev
 {
     public partial class FrmMain : Form
     {
@@ -24,7 +19,7 @@ namespace Fosc.Dolphin.UI
             IBankAccount jupiterAccount = new GoldAccount();
             venusAccount.PayIn(200);
             venusAccount.WithDraw(20);
-            MessageBox.Show(venusAccount.Balance.ToString());
+            MessageBox.Show(venusAccount.Balance.ToString(CultureInfo.InvariantCulture));
         }
 
         #region Clear
@@ -44,8 +39,20 @@ namespace Fosc.Dolphin.UI
 
         private void toolStripMenuItem_Encrypt_Click(object sender, EventArgs e)
         {
-            var frmClear = new FrmAutoCode { MdiParent = this };
-            frmClear.Show();
+            var frmEncrypt = new FrmEncrypt { MdiParent = this };
+            frmEncrypt.Show();
+        }
+
+        private void testTToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frmTest = new FrmTest { MdiParent = this };
+            frmTest.Show();
+        }
+
+        private void toolStripMenuItem_Sqlite_Click(object sender, EventArgs e)
+        {
+            var frmTest = new FrmSqlite { MdiParent = this };
+            frmTest.Show();
         }
     }
 }

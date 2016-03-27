@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Fosc.Dolphin.Common.Security;
 
 namespace Fosc.Dolphin.UI.Dev.Widget
 {
@@ -27,7 +28,7 @@ namespace Fosc.Dolphin.UI.Dev.Widget
             }
             else
             {
-
+                EncryptTypeGuessService.Guessing(sourceValue,resultValue);
             }
         }
         #endregion

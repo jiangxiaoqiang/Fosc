@@ -44,3 +44,12 @@ Temporary Items
 
 #Debug folder
 Debug
+
+#bin folder
+bin
+
+#obj folder
+obj
+
+#db file
+*.db
